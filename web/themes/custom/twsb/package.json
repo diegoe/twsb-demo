@@ -7,7 +7,7 @@
   "private": true,
   "scripts": {
     "build": "NODE_ENV=development postcss ./css/twsb.css --verbose --dir ./dist/",
-    "dev": "yarn build --watch",
+    "dev": "yarn build --watch --poll",
     "dist": "NODE_ENV=production postcss ./css/twsb.css --verbose --dir ./dist/",
     "clean": "rm -rf ./dist/"
   },

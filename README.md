@@ -54,6 +54,8 @@ long as your are logged in, and have enabled debugging (see
   but a minified version is available for production use when run with
   `NODE_ENV=production` (see `dist` command in
   `(theme-root)/package.json`)
+* Also note that `dev:theme` uses `--poll` to watch for changes because
+  `inotify` does not work correctly on NFS mounted files inside Docker
 
 If in doubt, you can see the commands in `(repo-root)/composer.json` and
 `(theme-root)/package.json`, their respective `script` sections
