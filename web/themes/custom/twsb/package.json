@@ -1,0 +1,13 @@
+{
+  "name": "twsb",
+  "version": "1.0.0",
+  "description": "A Tailwind+Storybook setup",
+  "author": "Diego Escalante Urrelo <diego@tag1.com>",
+  "license": "GPL-2.0-or-later",
+  "private": true,
+  "devDependencies": {
+    "autoprefixer": "^10.4.0",
+    "postcss": "^8.3.11",
+    "tailwindcss": "^2.2.19"
+  }
+}
