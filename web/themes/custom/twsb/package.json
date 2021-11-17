@@ -9,12 +9,23 @@
     "build": "NODE_ENV=development postcss ./css/twsb.css --verbose --dir ./dist/",
     "dev": "yarn build --watch --poll",
     "dist": "NODE_ENV=production postcss ./css/twsb.css --verbose --dir ./dist/",
-    "clean": "rm -rf ./dist/"
+    "clean": "rm -rf ./dist/",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "devDependencies": {
+    "@babel/core": "^7.16.0",
+    "@storybook/addon-actions": "^6.3.12",
+    "@storybook/addon-essentials": "^6.3.12",
+    "@storybook/addon-links": "^6.3.12",
+    "@storybook/server": "^6.3.12",
     "autoprefixer": "^10.4.0",
+    "babel-loader": "^8.2.3",
     "postcss": "^8.3.11",
     "postcss-cli": "^9.0.2",
     "tailwindcss": "^2.2.19"
+  },
+  "dependencies": {
+    "@storybook/cli": "^6.3.12"
   }
 }
