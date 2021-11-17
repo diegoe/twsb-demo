@@ -6,7 +6,8 @@
   "license": "GPL-2.0-or-later",
   "private": true,
   "scripts": {
-    "build": "postcss ./css/twsb.css --verbose --dir ./dist/",
+    "build": "NODE_ENV=development postcss ./css/twsb.css --verbose --dir ./dist/",
+    "dist": "NODE_ENV=production postcss ./css/twsb.css --verbose --dir ./dist/",
     "clean": "rm -rf ./dist/"
   },
   "devDependencies": {

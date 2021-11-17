@@ -31,7 +31,10 @@
     },
     "scripts": {
         "setup:site": "drush sql-drop --yes && drush site:install --yes --verbose",
-        "setup:debug": "cp --verbose docs/sites/* web/sites/default/"
+        "setup:debug": "cp --verbose docs/sites/* web/sites/default/",
+        "setup:theme": "yarn --cwd web/themes/custom/twsb install",
+
+        "build:theme": "yarn --cwd web/themes/custom/twsb build"
     },
     "extra": {
         "drupal-scaffold": {
