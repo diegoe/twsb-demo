@@ -1,0 +1,9 @@
+tailwind:
+  css:
+    theme:
+      dist/twsb.css: {}
+  dependencies:
+    - twsb/alpine
+alpine:
+  js:
+    /libraries/alpine/dist/alpine.js: {}

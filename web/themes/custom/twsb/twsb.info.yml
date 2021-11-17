@@ -18,3 +18,5 @@ regions:
   featured_bottom: 'Featured bottom'
   footer: 'Footer'
   sticky_footer: 'Sticky footer'
+libraries:
+  - twsb/tailwind
