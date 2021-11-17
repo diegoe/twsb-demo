@@ -12,16 +12,19 @@ $ ddev start
 $ ddev composer install
 
 # Install and configure the site
-$ ddev composer setup:site
+$ ddev composer install:site
 
 # Install theme dependencies
+$ ddev composer install:theme
+
+# Set our theme as default
 $ ddev composer setup:theme
 
 # Generate theme files
 $ ddev composer build:theme
 
 # Get a one time login link
-$ ddev drush user-login
+$ ddev drush user:login
 ```
 
 You should now have a working demo at http://twsb-demo.ddev.site/
@@ -35,7 +38,7 @@ $ ddev composer setup:debug
 
 # Build theme files, and watch theme for changes
 # Run this instead of build:theme
-$ ddev drush dev:theme
+$ ddev composer dev:theme
 ```
 
 This will run `yarn` inside the `ddev` container, as necessary. Changes

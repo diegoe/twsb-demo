@@ -30,11 +30,15 @@
         "sort-packages": true
     },
     "scripts": {
-        "setup:site": "drush sql-drop --yes && drush site:install --yes --verbose",
-        "setup:debug": "cp --verbose docs/sites/* web/sites/default/",
-        "setup:theme": "yarn --cwd web/themes/custom/twsb install",
+        "install:site": "drush sql:drop --yes --verbose && drush site:install --yes --verbose",
+        "install:theme": "yarn --cwd web/themes/custom/twsb install",
 
-        "build:theme": "yarn --cwd web/themes/custom/twsb build"
+        "setup:theme": "drush theme:enable twsb --verbose && drush config:set system.theme default twsb --yes --verbose",
+        "setup:debug": "cp docs/sites/* web/sites/default/ --verbose",
+
+        "build:theme": "yarn --cwd web/themes/custom/twsb build --verbose",
+
+        "dev:theme": "yarn --cwd web/themes/custom/twsb dev --verbose"
     },
     "extra": {
         "drupal-scaffold": {
