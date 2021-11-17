@@ -30,7 +30,8 @@
         "sort-packages": true
     },
     "scripts": {
-        "_setup": "drush sql-drop --yes && drush site:install --yes --verbose"
+        "setup:site": "drush sql-drop --yes && drush site:install --yes --verbose",
+        "setup:debug": "cp --verbose docs/sites/* web/sites/default/"
     },
     "extra": {
         "drupal-scaffold": {

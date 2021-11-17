@@ -13,6 +13,7 @@ node_modules
 
 # Ignore sensitive information
 /web/sites/*/settings.local.php
+/web/sites/*/services.local.yml
 
 # Ignore Drupal's file directory
 /web/sites/*/files/
