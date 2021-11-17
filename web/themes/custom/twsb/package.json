@@ -5,9 +5,14 @@
   "author": "Diego Escalante Urrelo <diego@tag1.com>",
   "license": "GPL-2.0-or-later",
   "private": true,
+  "scripts": {
+    "build": "postcss ./css/twsb.css --verbose --dir ./dist/",
+    "clean": "rm -rf ./dist/"
+  },
   "devDependencies": {
     "autoprefixer": "^10.4.0",
     "postcss": "^8.3.11",
+    "postcss-cli": "^9.0.2",
     "tailwindcss": "^2.2.19"
   }
 }
