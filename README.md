@@ -39,6 +39,13 @@ $ ddev composer setup:debug
 # Build theme files, and watch theme for changes
 # Run this instead of build:theme
 $ ddev composer dev:theme
+
+# Setup Storybook
+$ ddev composer install:storybook
+
+# Run Storybook server
+# Available at http://storybook.twsb-demo.ddev.site/
+$ ddev composer dev:storybook
 ```
 
 This will run `yarn` inside the `ddev` container, as necessary. Changes
