@@ -1,0 +1,9 @@
+ddev composer install
+ddev composer install:site
+ddev composer install:theme
+ddev composer setup:theme
+ddev composer build:theme
+ddev composer setup:debug
+ddev composer install:storybook
+ddev drush user:login
+ddev composer dev:storybook
