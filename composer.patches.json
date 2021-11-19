@@ -1,0 +1,7 @@
+{
+    "patches": {
+        "drupal/storybook_server": {
+            "WIP: Fix omissions and hardcoded paths": "patches/storybook_server/0001-WIP-Fix-a-bunch-of-oversights-to-get-it-to-run.patch"
+        }
+    }
+}

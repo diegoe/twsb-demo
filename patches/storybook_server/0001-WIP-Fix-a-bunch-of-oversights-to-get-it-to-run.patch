@@ -1,0 +1,84 @@
+From b733bd705c62fb216c4a26bc217a00a387ab05f1 Mon Sep 17 00:00:00 2001
+From: Diego Escalante Urrelo <diegoe@gnome.org>
+Date: Thu, 18 Nov 2021 21:01:49 -0500
+Subject: [PATCH] WIP: Fix a bunch of oversights to get it to run
+
+---
+ index.js                                    | 20 ++++++++++++++++----
+ src/Controller/ServerEndpointController.php | 11 +++++++++--
+ 2 files changed, 25 insertions(+), 6 deletions(-)
+
+diff --git index.js index.js
+index 897b3eb..b906ec6 100644
+--- index.js
++++ index.js
+@@ -2,10 +2,17 @@ const fetchStoryHtml = async (url, path, params, context) => {
+   // Remove trailing slash.
+   url = url.replace(/\/$/, "");
+ 
+-  const regexp = /\.\/web\/themes\/custom\/(.+?)\/(.+)\.stories\.yml/;
++  const regexp = /(?<storyName>.+)\.stories\.(?<extension>[\S]{1,4})/;
++  console.log(context.parameters);
++  console.log(params);
++
+   const info = context.parameters.fileName.match(regexp);
+-  params._drupal_theme = info[1];
+-  params._storybook = info[2];
++
++  if (info.groups === undefined || info.groups.length < 2) {
++    return "";
++  }
++  params._drupal_theme = 'twsb';
++  params._storybook = info.groups.storyName;
+ 
+   const fetchUrl = new URL(`${url}/_storybook_server`);
+   fetchUrl.search = new URLSearchParams({ ...params }).toString();
+@@ -15,10 +22,15 @@ const fetchStoryHtml = async (url, path, params, context) => {
+   fetchUrl.username = '';
+   fetchUrl.password = '';
+ 
++  console.log(fetchUrl);
+   const response = await fetch(fetchUrl, {
+     credentials: "include",
+   });
+-  return response.text();
++  if (response.status != 200) {
++    return "";
++  } else {
++    return response.text();
++  }
+ };
+ 
+ const webpackFinal = async (config, { configType }) => {
+diff --git src/Controller/ServerEndpointController.php src/Controller/ServerEndpointController.php
+index e087ea2..be4cdd3 100644
+--- src/Controller/ServerEndpointController.php
++++ src/Controller/ServerEndpointController.php
+@@ -36,7 +36,14 @@ class ServerEndpointController extends ControllerBase {
+     $themePath = $themeHandler->getTheme($theme)->getPath();
+     $filename = "$themePath/$component.twig";
+     // Check that the filepath isn't trying to break out.
+-    if (strpos(realpath(\Drupal::root() . "/$filename") , \Drupal::root() . '/' . $themePath) !== 0) {
++    $_ret = strpos(realpath(\Drupal::root() . "/$filename") , \Drupal::root() . '/' . $themePath);
++    if ($_ret !== 0) {
++      \Drupal::logger('storybook_server')
++        ->error("num: " . var_export($_ret, true));
++      \Drupal::logger('storybook_server')
++        ->error("rp: " . var_export(\Drupal::root() . "/$filename", true)) .
++      \Drupal::logger('storybook_server')
++        ->error("tp: " . \Drupal::root() . '/' . $themePath);
+       $response->setStatusCode(500);
+       return $response;
+     }
+@@ -45,7 +52,7 @@ class ServerEndpointController extends ControllerBase {
+       include_once \Drupal::root() . '/core/themes/engines/twig/twig.engine';
+       $arguments = [];
+       foreach ($request->query->all() as $key => $value) {
+-        $arguments[$key] = json_decode($value, TRUE);
++        $arguments[$key] = json_decode($value, TRUE) ?: $value;
+       }
+       $markup = (string) twig_render_template($filename, $arguments);
+ 
+-- 
+2.34.0
+

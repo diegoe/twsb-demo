@@ -16,9 +16,11 @@
     ],
     "require": {
         "composer/installers": "^1.9",
+        "cweagans/composer-patches": "^1.7",
         "drupal/core-composer-scaffold": "^9.2",
         "drupal/core-project-message": "^9.2",
         "drupal/core-recommended": "^9.2",
+        "drupal/storybook_server": "^1.2",
         "drush/drush": "^10.6"
     },
     "conflict": {
@@ -95,6 +97,7 @@
                 "  * Remove the plugin that prints this message:",
                 "      composer remove drupal/core-project-message"
             ]
-        }
+        },
+        "patches-file": "composer.patches.json"
     }
 }
